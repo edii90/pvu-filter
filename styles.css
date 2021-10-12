@@ -1,0 +1,26 @@
+body {
+  background-color: rgb(50 55 58);
+  font-family: 'Poppins';
+  font-weight: 200;
+  color: #fff;
+}
+
+a {
+  color: #fff;
+  outline: none;
+  text-decoration: none;
+}
+
+.title {
+  text-align: center;
+  font-size: 32px;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 24px;
+}
+
+.center {
+  text-align: center;
+}
