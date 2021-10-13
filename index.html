@@ -21,28 +21,40 @@
     />
   </head>
   <body>
-    <form>
-      <label for="pvu">PVU:</label>
-      <input type="number" id="pvu" name="pvu" placeholder="pvu" value="11" />
-      <label for="pvu">LE:</label>
-      <input type="number" id="le" name="le" placeholder="le" value="12" />
-
-      <fieldset>      
-        Type
-          <input type="checkbox" name="dark" value="dark">Dark
-          <input type="checkbox" name="electro" value="electro">Electro
-          <input type="checkbox" name="fire" value="fire">Fire
-          <input type="checkbox" name="ice" value="ice">Ice
-          <input type="checkbox" name="light" value="light">Light
-          <input type="checkbox" name="parasite" value="parasite">Parasite
-          <input type="checkbox" name="metal" value="metal">Metal
-          <input type="checkbox" name="water" value="water">Water
-          <input type="checkbox" name="wind" value="wind">Wind
-      </fieldset>      
-      
-      <button onclick="event.preventDefault();findPlant();">search</button>
-    </form>
-      <div class="row justify-content-center" id="data"></div>
+      <div class="row">
+        <form class="col-2">
+          <label for="token">Token</label><br>
+          <input type="text" id="token" name="token" />
+          <br>
+          <br>
+          <label for="pvu">PVU</label><br>
+          <input type="number" id="pvu" name="pvu"/>
+          <br>
+          <br>
+          <label for="pvu">LE</label><br>
+          <input type="number" id="le" name="le"/>
+          <br>
+          <br>
+          <fieldset id="elements">      
+            Type
+            <br>
+            <br>
+              <input type="checkbox" name="dark" value="dark">Dark<br>
+              <input type="checkbox" name="electro" value="electro">Electro<br>
+              <input type="checkbox" name="fire" value="fire">Fire<br>
+              <input type="checkbox" name="ice" value="ice">Ice<br>
+              <input type="checkbox" name="light" value="light">Light<br>
+              <input type="checkbox" name="parasite" value="parasite">Parasite<br>
+              <input type="checkbox" name="metal" value="metal">Metal<br>
+              <input type="checkbox" name="water" value="water">Water<br>
+              <input type="checkbox" name="wind" value="wind">Wind<br>
+          </fieldset>      
+          <br><br>
+          <button onclick="event.preventDefault();findPlant(token.value);">search</button>
+        </form>
+        <div class="col-10 row justify-content-center" id="data"></div>
+      </div>
     </div>
   </body>
 </html>
+

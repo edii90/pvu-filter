@@ -3,8 +3,19 @@ var div;
 const limitPerPage = 1000;
 const apiUrl = "https://backend-farm.plantvsundead.com/get-plants-filter-v2";
 
-const getUsers = async function (offset = 0) {
-  let actualUrl = apiUrl + `?offset=${offset}&limit=${limitPerPage}`;
+const getPlants = async function (token, offset = 0) {
+  var elements = [];
+  var checked = document.getElementById("elements").getElementsByTagName("input");
+
+  for (const i in checked) {
+      const element = checked[i];
+      
+      if (element.checked) {
+        elements.push(element.value)
+      }
+  }
+
+  let actualUrl = apiUrl + `?elements=${elements.join(',')}&offset=${offset}&limit=${limitPerPage}`;
   var apiResults = await fetch(actualUrl, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, *cors, same-origin
@@ -12,7 +23,7 @@ const getUsers = async function (offset = 0) {
     credentials: 'same-origin', // include, *same-origin, omit
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer <<token>>'
+      'Authorization': 'Bearer ' + token
     }}).then((resp) => {
     return resp.json();
   }).catch((error) => {
@@ -24,8 +35,7 @@ const getUsers = async function (offset = 0) {
 };
 
 const getEntireUserList = async function (offset = 0) {
-  const results = await getUsers(offset);
-  console.log(results);
+  const results = await getPlants(document.getElementById("token").value, offset);
   if (results.data.length) {
     return results.data.concat(await getEntireUserList(offset + 5000));
   } else {
@@ -45,8 +55,7 @@ function filterResults(data) {
   const le = document.getElementById("le").value;
 
   const result = data.filter((element) => {
-    if (element["config"].farm.le / element["config"].farm.hours >= le && element["startingPrice"] <= pvu) {
-      console.log("found", element);
+    if (element["config"] ? element["config"].farm.le / element["config"].farm.hours >= le && element["startingPrice"] <= pvu : false) {
       return true;
     }
     return false;
@@ -60,15 +69,19 @@ function filterResults(data) {
 
 function draw(data) {
   div.innerHTML = "";
+  if (data && data.length > 0) {
   data.forEach(function (element) {
     div.innerHTML += addPlant(element);
-  });
+  });  
+  } else {
+    div.innerHTML += "No se encontraron resultados";
+  }
 }
 
 function addPlant(element) {
   return (
     '<div class="card text-white bg-dark m-1 col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2">' +
-      '<div class="card-body">' +
+      '<div class="card-body" id="' + element["id"] + '">' +
         '<div class="justify-content-center">' +
           '<a href="https://marketplace.plantvsundead.com/login#/plant/' + element["id"] + '" target="_blank">' +
             '<div class="row">' +
