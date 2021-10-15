@@ -2,23 +2,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+    
     <script src="data.js"></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
-      crossorigin="anonymous"
-    />
+    <script src="https://code.jquery.com/jquery-1.4.2.min.js"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
     <link rel="stylesheet" href="styles.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Poppins:200,400|Fredoka+One|Raleway:300|Roboto+Mono:wght@200&amp;display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,400|Fredoka+One|Raleway:300|Roboto+Mono:wght@200&amp;display=swap" rel="stylesheet" />
   </head>
   <body>
       <div class="row">
@@ -28,26 +19,39 @@
           <br>
           <br>
           <label for="pvu">Max PVU</label><br>
-          <input type="number" id="pvu" name="pvu"/>
+          <input type="number" id="pvu" name="pvu" />
           <br>
           <br>
           <label for="pvu">Min LExH</label><br>
-          <input type="number" id="le" name="le"/>
+          <input type="number" id="le" name="le" />
+
           <br>
           <br>
-          <fieldset id="elements">      
-            Type
-            <br>
-            <br>
-              <input type="checkbox" name="dark" value="dark"> Dark<br>
-              <input type="checkbox" name="electro" value="electro"> Electro<br>
-              <input type="checkbox" name="fire" value="fire"> Fire<br>
-              <input type="checkbox" name="ice" value="ice"> Ice<br>
-              <input type="checkbox" name="light" value="light"> Light<br>
-              <input type="checkbox" name="parasite" value="parasite"> Parasite<br>
-              <input type="checkbox" name="metal" value="metal"> Metal<br>
-              <input type="checkbox" name="water" value="water"> Water<br>
-              <input type="checkbox" name="wind" value="wind"> Wind<br>
+
+          <div class="col-auto me-auto form-label">Type</div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" checked>
+            <label class="form-check-label" for="inlineRadio1">Plants</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
+            <label class="form-check-label" for="inlineRadio2">Mother Tree</label>
+          </div>
+
+          <br>
+          <br>
+          
+          <fieldset id="elements">
+            <div class="col-auto me-auto form-label">Element</div>
+              <input type="checkbox" name="dark" value="dark" checked> Dark<br>
+              <input type="checkbox" name="electro" value="electro" checked> Electro<br>
+              <input type="checkbox" name="fire" value="fire" checked> Fire<br>
+              <input type="checkbox" name="ice" value="ice" checked> Ice<br>
+              <input type="checkbox" name="light" value="light" checked> Light<br>
+              <input type="checkbox" name="parasite" value="parasite" checked> Parasite<br>
+              <input type="checkbox" name="metal" value="metal" checked> Metal<br>
+              <input type="checkbox" name="water" value="water" checked> Water<br>
+              <input type="checkbox" name="wind" value="wind" checked> Wind<br>
           </fieldset>      
           <br><br>
           <button type="submit" onclick="event.preventDefault();findPlant(token.value);">Search</button>

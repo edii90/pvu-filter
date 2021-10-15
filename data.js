@@ -15,7 +15,9 @@ const getPlants = async function (token, offset = 0) {
     }
   }
 
-  let actualUrl = apiUrl + `?elements=${elements.join(',')}&offset=${offset}&limit=${limitPerPage}`;
+  let type = document.getElementById('inlineRadio1').checked ? 1 : 2;
+
+  let actualUrl = apiUrl + `?elements=${elements.join(',')}&type=${type}&offset=${offset}&limit=${limitPerPage}`;
   var apiResults = await fetch(actualUrl, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, *cors, same-origin
@@ -59,21 +61,13 @@ function filterResults(data) {
 
   if (data) {
     const result = data.filter((element) => {
-      if (
-        element['config']
-          ? element['config'].farm.le / element['config'].farm.hours >= le && element['startingPrice'] <= pvu
-          : false
-      ) {
+      if (element['config'] ? element['config'].farm.le / element['config'].farm.hours >= le && element['startingPrice'] <= pvu : false) {
         return true;
       }
       return false;
     });
     result.sort((a, b) =>
-      a['config'].farm.le / a['config'].farm.hours < b['config'].farm.le / b['config'].farm.hours
-        ? 1
-        : b['config'].farm.le / b['config'].farm.hours < a['config'].farm.le / a['config'].farm.hours
-        ? -1
-        : 0,
+      a['config'].farm.le / a['config'].farm.hours < b['config'].farm.le / b['config'].farm.hours ? 1 : b['config'].farm.le / b['config'].farm.hours < a['config'].farm.le / a['config'].farm.hours ? -1 : 0,
     );
 
     return result;
